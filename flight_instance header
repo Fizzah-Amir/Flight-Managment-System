@@ -1,0 +1,20 @@
+#pragma once
+#ifndef FLIGHT_INST_H
+#define FLIGHT_INST_H
+#include"flight.h"
+class FlightInst {
+ int instanceID;
+Mystring date;
+ bool isCancel;
+int reservationCount;
+ int seat_No;
+  void setInstanceID(int id);
+  void setDate(Mystring d);
+void setIsCancelled(int c);
+  int getInstanceID();
+  void getDate(Mystring d);
+  int getIsCancelled();
+  int getReservationCount(); 
+  void incrementReservation();
+};
+#endif;
