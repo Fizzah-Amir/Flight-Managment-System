@@ -34,7 +34,7 @@ FlightInstance::FlightInstance(const FlightInstance& other) {
         return reserve_seat;
     }
     void FlightInstance::print() {
-        std::cout << "instance ID" << instanceId << "date" << date;
+        cout << "instance ID" << instanceId << "date" << date;
         if (cancel){
            cout << "cancelled";
         cout << " reservations" << reserveSeat<<"(out of 5)";
