@@ -1,0 +1,24 @@
+#pragma once
+#include <iostream>
+#include "Mystring.h"
+#include "Logger.h"
+#include"reservation.h"
+Reservation::Reservation()
+    : r_Id(0), flightId(0), instanceId(0), passen_name("") {}
+Reservation::Reservation(int rid, int fid, int iid, Mystring pname)
+    :r_Id(rid), flightId(fid), instanceId(iid), passen_name(pname) {};
+    int Reservation::get_reservation_Id() {
+    return r_Id; 
+    }
+    int Reservation::getFlightId(){ 
+        return flightId;
+    }
+    int Reservation::getInstanceId(){
+        return instanceId;
+    }
+    Mystring Reservation::getpassen_name() { 
+        return passen_name;
+    }
+    void Reservation::print() {
+        cout << "Reservati]8on ID: " << r_Id << "flight ID" << flightId << ", instance id" << instanceId << ", Passenger: " << passen_name << endl;
+    }
