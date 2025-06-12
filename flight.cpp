@@ -41,7 +41,7 @@ Mystring Flight::get_from_city()const {
 Mystring Flight::get_to_city() const{
     return to;
 }
-//remove reservations
+
 static void bookTicket(MyVector<Flight>& flights, MyVector<Reservation>& reservations) {
     cout << "Enter flight no";
     Mystring num;
