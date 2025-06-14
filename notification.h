@@ -3,8 +3,8 @@
 #include"Logger.h"
 class Notification {
 protected:
-   int notiId;
-    Mystring msg;
+int notiId;
+ Mystring msg;
 public:
     Notification();
     Notification(int id, Mystring m);
