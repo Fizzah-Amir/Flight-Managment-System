@@ -3,7 +3,7 @@
 #include"logger.h"
 class Pilot : public Person {
   int assignedFlight[5];
- int assignCount;
+ int assign_count;
 public:
     Pilot();
     Pilot( Mystring n, Address a, Mystring e,Mystring p);
