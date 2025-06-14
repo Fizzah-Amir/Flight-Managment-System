@@ -1,8 +1,8 @@
 #include<iostream>
 using namespace std;
 #include"Person.h"
-Person::Person() : name(""), email(""), phone("") {}
-Person::Person( Mystring& n,Address& a,Mystring& e, Mystring& p): name(n), address(a), email(e), phone(p) {}
+Person::Person() : name(""), email(""), phone("") {};
+Person::Person( Mystring& n,Address& a,Mystring& e, Mystring& p): name(n), address(a), email(e), phone(p) {};
 void Person::setName( Mystring& n) {
 	name = n; 
 }
