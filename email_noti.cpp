@@ -3,8 +3,8 @@ using namespace std;
 #include"sms_notification.h"
 SmsNotification::SmsNotification() : Notification(), phone("p") {}
 SmsNotification::SmsNotification(int id, const Mystring& c, const Mystring& ph) : Notification(id, c), phone(ph) {}
-void SmsNotification::setPhone(const Mystring& ph) {
-	phone = ph;
+void SmsNotification::setPhone(const Mystring& p) {
+	phone = p;
  }
 void SmsNotification::send() { 
 
