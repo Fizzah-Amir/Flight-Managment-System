@@ -1,0 +1,16 @@
+include <iostream>
+using namespace std;
+#include"Flight.h"
+#include"reservation.h"
+#include"Logger.h"
+int main() {
+ Logger& logger = Logger::getInstance();
+ logger.initialize("log.txt");
+ logger.log("Flight management system");
+  MyVector<Flight> flights;
+ MyVector<Reservation> reservations;
+Flight f1(1, Mystring("PK301"), Mystring("Lahore"), Mystring("Karachi"), 120);
+f1.add_schedule(Schedule(1, Mystring("08:00")));
+  f1.add_instance(FlightInstance(1, Mystring("01-10-2025")));
+  f1.add_instance(FlightInstance(2, Mystring("06-10-2025")));
+   flights.push(f1);
