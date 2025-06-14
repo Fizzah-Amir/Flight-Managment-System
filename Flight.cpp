@@ -19,11 +19,11 @@ void Flight::addSchedule(const Schedule& s) {
 void Flight::addInstance(const FlightInstance& fi) {
 	instances.push(fi);
 }
-void Flight::print()const {
+void Flight::print() {
 	cout << "flight no" << from << "->" << to << "in duration" << time;
-	for (int i = 0; i < schedules.size(); i++) {
-		cout << "day" << schedules[i].getDay();
-		cout << "time" << schedules[i].getDepartureTime();
+for (int i = 0; i < schedules.size(); i++) {
+	cout << "day" << schedules[i].getDay();
+	cout << "time" << schedules[i].getDepartureTime();
 	}
 	for (int i = 0; i < instances.size(); i++) {
 		 instances[i].print();
@@ -35,10 +35,10 @@ void Flight::print()const {
         flights[i].print();
     }
 }
-Mystring Flight::get_from_city()const {
+Mystring Flight::get_from_city() {
     return from;
 }
-Mystring Flight::get_to_city() const{
+Mystring Flight::get_to_city(){
     return to;
 }
 //remove reservations
