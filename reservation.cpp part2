@@ -1,29 +1,29 @@
  void Reservation::Modify_Cancel_Reservation(MyVector<Flight> flights, MyVector<Reservation> reservations) {
-     cout << "enter reservation id";
-     int rid;
-     cin >> rid;
-     int idx = -1;
-     for (int i = 0; i < reservations.size(); i++) {
-         if (reservations[i].get_reservation_Id() == rid) {
-             idx = i;
-             break;
-         }
+   cout << "enter reservation id";
+   int r_id;
+   cin >> rid;
+   int idx = -1;
+   for (int i = 0; i < reservations.size(); i++) {
+       if (reservations[i].get_reservation_Id() == rid) {
+           idx = i;
+           break;
+       }
      }
-     if (idx == -1) {
-         cout << "reservation invalid";
+ if (idx == -1) {
+        cout << "reservation invalid";
      }
-     else {
-         reservations[idx].print();
+    else {
+        reservations[idx].print();
      }
-     cout << "canacel reservations ..press 1";
-     cout << "view reservations..press 2";
-     int choice = 0;
-     if (choice == 1) {
-         reservations.delete_at(idx);
-         Logger::getInstance().log("reservation cancel");
-         cout << "canceled succesfuly";
+ cout << "canacel reservations ..press 1";
+ cout << "view reservations..press 2";
+  int choice = 0;
+   if (choice == 1) {
+        reservations.delete_at(idx);
+       Logger::getInstance().log("reservation cancel");
+       cout << "canceled";
      }
-     else if (choice == 2) {
+    else if (choice == 2) {
          reservations[idx].print();
      }
  }
