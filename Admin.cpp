@@ -5,10 +5,10 @@ using namespace std;
 Admin::Admin() : Person() {};
 Admin::Admin(Mystring n, Address a, Mystring e, Mystring p) : Person(n, a, e, p) {};
 void Admin::addFlight() {
-	Logger::getInstance().log("Admin added a new flight."); 
+	Logger::getInstance().log("admin added a new flight"); 
 }
 void Admin::cancelFlight() {
-	Logger::getInstance().log("Admin cancelled a flight.");
+	Logger::getInstance().log("admin cancelled a flight");
 }
 void Admin::sendNoti( Mystring msg) { 
 	Logger::getInstance().log(msg); 
