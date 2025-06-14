@@ -2,7 +2,6 @@
 #include <iostream>
 using namespace std;
 #include"Flight.h"
-
 Flight::Flight(int id, Mystring num, Mystring dep, Mystring arr, int dur) : flightId(id), flightNumber(num), from(dep), to(arr), duration(dur) {};
 Mystring Flight::getFlightNumber() {
 	return flightNumber;
@@ -68,3 +67,4 @@ static void bookTicket(MyVector<Flight>& flights, MyVector<Reservation>& reserva
         if (f1->get_instances()[i].getInstanceID() == iid)
             f2 = &f1->get_instances()[i];
     } 
+}
