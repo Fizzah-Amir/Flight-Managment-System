@@ -17,5 +17,6 @@ public:
     Mystring getpassen_name();
     void print();
     static void Modify_Cancel_Reservation(MyVector<Flight>flights, MyVector<Reservation>reservations);
+    static void search_Passenger_name(MyVector<Reservation>& reservations);
 };
         
