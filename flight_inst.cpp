@@ -2,13 +2,12 @@
 using namespace std;
 #include"flight_inst.h"
 FlightInstance::FlightInstance(const FlightInstance& other) {
-    date = other.date;
-    instanceId = other.instanceId;
-    reserve_seat = other.reserve_seat;
-    cancel = other.cancel;
+  date = other.date;
+  instanceId = other.instanceId;
+   reserve_seat = other.reserve_seat;
+   cancel = other.cancel;
 }
-    FlightInstance::FlightInstance(int iid,  Mystring d)
-        : instanceId(iid), date(d), cancel(false), reserve_seat(0) {}
+    FlightInstance::FlightInstance(int iid,  Mystring d): instanceId(iid), date(d), cancel(false), reserve_seat(0){};
     int FlightInstance::getInstanceID() {
         return instanceId;
     }
@@ -22,8 +21,7 @@ FlightInstance::FlightInstance(const FlightInstance& other) {
         cancel = true;
              }
     void FlightInstance::reserveSeat() {
-        reserve_seat++;
-        
+        reserve_seat++;   
     }
     void FlightInstance::unreserveSeat() {
         if (reserve_seat > 0) {
@@ -37,7 +35,6 @@ FlightInstance::FlightInstance(const FlightInstance& other) {
         cout << "instance ID" << instanceId << "date" << date;
         if (cancel){
            cout << "cancelled";
-        cout << " reservations" << reserveSeat<<"(out of 5)";
-    }
-      
+        cout << " reservations" << reserveSeat;
+    } 
 };
