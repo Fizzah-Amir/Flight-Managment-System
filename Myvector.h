@@ -3,34 +3,27 @@
 #define MYVECTOR_H
 #include <iostream>
 using namespace std;
-
 template <typename V>
-
 class MyVector {
 private:
 	V* arr;
 	int len;
 	int cap;
-
-
-	void double_capacity()
+void double_capacity()
 	{
 		V* temp;
 		int l = this->len;
 		int cp = this->cap + this->cap + 1;
-
 		temp = new V[cp];
 		for (int i = 0; i < l; i++)
 		{
 			temp[i] = this->arr[i];
 		}
 		delete[] this->arr;
-
 		this->cap = cp;
 		this->len = l;
 		this->arr = temp;
 	}
-
 public:
 	MyVector()
 	{
