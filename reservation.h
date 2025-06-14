@@ -2,7 +2,7 @@
 #include"Myvector.h"
 #include "Mystring.h"
 #include "Logger.h"
-class Flight;
+#include"Flight.h"
 class Reservation {
     int r_Id;
     int flightId;
