@@ -8,7 +8,7 @@ Pilot::Pilot( Mystring n,  Address a, Mystring e,  Mystring p) : Person(n, a, e,
     assignCount = 0;
 }
 void Pilot::assignFlight(int flightID) {
-    if (assignCount < 20) {
+    if (assignCount <5) {
         assignedFlight[assignCount] = flightID;
         assignCount++;
         Logger::getInstance().log("pilot has been assigned to flight");
