@@ -68,3 +68,49 @@ static void bookTicket(MyVector<Flight>& flights, MyVector<Reservation>& reserva
             f2 = &f1->get_instances()[i];
     } 
 }
+ void Flight::save(fstream& f) {
+     int l2= from.length();
+         f.write((char*)&l2, sizeof(l2));
+         f.write((const char*)from, l2);
+
+         int l3= to.length();
+         f.write((char*)&l3, sizeof(l3));
+         f.write((const char*)to, l3);
+     int l = schedules.size();
+     f.write((char*)&l, sizeof(l));
+     for (int i = 0; i < l; i++) {
+         schedules[i].save(f);
+     }
+   int l1 = instances.size();
+   f.write((char*)&l1, sizeof(l1));
+   for (int i = 0; i < l1; i++) {
+         instances[i].save(f);
+     }
+     f.write((char*)&flightId, sizeof(flightId));
+    
+ }
+ void Flight::load(fstream& f) {
+     int l, l1, l2,l3;
+     f.read((char*)&l3, sizeof(l3));
+     char* temp2 = new char[l3 + 1];
+     f.read(temp2, l3);
+     temp2[l3] = '\0';
+     delete[] temp2;
+
+     f.read((char*)&l2, sizeof(l2));
+     char* temp1 = new char[l2 + 1];
+     f.read(temp1, l2);
+     temp1[l2] = '\0';
+     delete[] temp1;
+
+     f.read((char*)&l, sizeof(l));
+     for (int i = 0; i < l; i++) {
+         schedules[i].load(f);
+     }
+     f.write((char*)&l1, sizeof(l1));
+     for (int i = 0; i < l1; i++) {
+         instances[i].save(f);
+     }
+     f.read((char*)&flightId, sizeof(flightId));
+     
+ }
