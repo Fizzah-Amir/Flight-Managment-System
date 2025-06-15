@@ -47,24 +47,21 @@ FlightInstance::FlightInstance(const FlightInstance& other) {
           }
       }
   }
-  void Reservation::save(fstream &f) {
-     
-      
-      int l = passen_name.length();
-      f.write((char*) & l, sizeof(l));
-      f.write((const char*)passen_name, l);
-      f.write((char*)&r_Id, sizeof(r_Id));
-      f.write((char*)&flightId, sizeof(flightId));
-  }
-  void Reservation::load(fstream& f) {
-      int l = passen_name.length();
+  void FlightInstance::save(fstream & f) {
+      int l = date.length();
+      f.write((char*)&l, sizeof(l));
+      f.write((const char*)date, l);
+      f.write((char*)&instanceId, sizeof(instanceId));
+      f.write((char*)&reserved_seat, sizeof(reserved_seat));
+}
+  void FlightInstance::load(fstream& f) {
+      int l = date.length();
       f.read((char*)&l, sizeof(l));
       char* temp = new char[l + 1];
       f.read(temp, l);
       temp[l] = '\0';
       delete[] temp;
-      f.read((char*)&r_Id, sizeof(r_Id));
-      f.read((char*)&flightId, sizeof(flightId));
+      f.read((char*)&instanceId, sizeof(instanceId));
+      f.read((char*)&reserved_seat, sizeof(reserved_seat));
   }
-       
-          
+
