@@ -98,9 +98,11 @@ Mystring Flight::get_to_city() const{
 }
   void Flight::searchFlights(const MyVector<Flight>& flights) {
     cout << "Enter departure city: ";
-    Mystring dep; std::cin >> dep;
+    Mystring dep; 
+   cin >> dep;
    cout << "Enter arrival city: ";
-    Mystring arr; std::cin >> arr;
+    Mystring arr; 
+    cin >> arr;
     for (int i = 0; i < flights.size();i++) {
         if (flights[i].get_from_city() == dep && flights[i].get_to_city() == arr) {
             flights[i].print();
