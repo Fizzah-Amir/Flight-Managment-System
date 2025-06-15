@@ -18,5 +18,5 @@ Mystring Reservation::getpassen_name() {
         return passen_name;
     }
 void Reservation::print() {
-    out << "Reservati]8on ID: " << r_Id << "flight ID" << flightId << ", instance id" << instanceId << ", Passenger: " << passen_name << endl;
+    cout << "Reservati]8on ID: " << r_Id << "flight ID" << flightId << ", instance id" << instanceId << ", Passenger: " << passen_name << endl;
     }
