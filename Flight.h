@@ -27,4 +27,6 @@ public:
        static void bookTicket(MyVector<Flight>&flights, MyVector<Reservation>&reservations);
        static void searchFlights(MyVector<Flight>&flights);
         static void update_schedule(MyVector<Flight>&flights);
+    void save(fstream &f);
+    void load(fstream &f);
 };
