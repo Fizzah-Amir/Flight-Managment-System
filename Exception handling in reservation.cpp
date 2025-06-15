@@ -12,7 +12,8 @@
     }
     else {
         Reservation r1 = reservations.back();
-        int lastId = r1.get_reservation_Id();
+        int lastId;
+         lastId = r1.get_reservation_Id();
         newResId = lastId + 1;
     }
     reservations.push(Reservation(newResId, f1->getFlightId(), iid, pname));
