@@ -10,5 +10,8 @@ void setDay(int d);
  void setDepartureTime(const Mystring &t);
 int getDay();
 Mystring get_departure_time();
+ void save(fstream& f);
+ void load(fstream& f);
 };
+
 
