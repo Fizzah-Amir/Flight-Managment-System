@@ -37,4 +37,34 @@ FlightInstance::FlightInstance(const FlightInstance& other) {
            cout << "cancelled";
         cout << " reservations" << reserveSeat;
     } 
-};
+        void Reservation::search_Passenger_name(MyVector<Reservation>& reservations) {
+      Mystring n;
+      cout << "enter passenger name";
+      cin >> n;
+      for (int i = 0; i < reservations.size();i++) {
+          if (reservations[i].getpassen_name() == n) {
+              reservations[i].print();
+          }
+      }
+  }
+  void Reservation::save(fstream &f) {
+     
+      
+      int l = passen_name.length();
+      f.write((char*) & l, sizeof(l));
+      f.write((const char*)passen_name, l);
+      f.write((char*)&r_Id, sizeof(r_Id));
+      f.write((char*)&flightId, sizeof(flightId));
+  }
+  void Reservation::load(fstream& f) {
+      int l = passen_name.length();
+      f.read((char*)&l, sizeof(l));
+      char* temp = new char[l + 1];
+      f.read(temp, l);
+      temp[l] = '\0';
+      delete[] temp;
+      f.read((char*)&r_Id, sizeof(r_Id));
+      f.read((char*)&flightId, sizeof(flightId));
+  }
+       
+          
