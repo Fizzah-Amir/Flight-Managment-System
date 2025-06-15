@@ -1,16 +1,91 @@
-include <iostream>
+
+#include <iostream>
 using namespace std;
+#include<fstream>
 #include"Flight.h"
 #include"reservation.h"
 #include"Logger.h"
+#include"Pilot.h"
 int main() {
  Logger& logger = Logger::getInstance();
  logger.initialize("log.txt");
  logger.log("Flight management system");
   MyVector<Flight> flights;
- MyVector<Reservation> reservations;
-Flight f1(1, Mystring("PK301"), Mystring("Lahore"), Mystring("Karachi"), 120);
-f1.add_schedule(Schedule(1, Mystring("08:00")));
+  MyVector<Reservation> reservations;
+
+  Flight f1(1, Mystring("Pk-031"), Mystring("Lahore"), Mystring("Karachi"),6);
+  Pilot p1(Mystring("sania"), Address(Mystring("lahore"), Mystring("Punjab"), Mystring("pakistan")), Mystring("sania123@gmial.com"), Mystring("03256"));
+  Reservation r1(1, 01, 1, Mystring("hania"));
+  f1.add_schedule(Schedule(1, Mystring("2:00")));
   f1.add_instance(FlightInstance(1, Mystring("01-10-2025")));
   f1.add_instance(FlightInstance(2, Mystring("06-10-2025")));
-   flights.push(f1);
+  flights.push(f1);
+
+  fstream rdr;
+  rdr.open("data.bin", ios::binary | ios::out);
+  f1.save(rdr);
+  p1.save(rdr);
+  r1.save(rdr);
+  rdr.close();
+
+
+   int ch = 0;
+   do {
+       Flight::show_schedule(flights, reservations);
+    cout << "=Flight Management System =" << endl;
+    cout << "1.Book a ticket" << endl;
+    cout << "2.Search flights" << endl;
+    cout << "3.Modify and cancel reservations" << endl;
+    cout << "4.Update schedule" << endl;
+    cout << "5.search for reservation by passenger names";
+    cout << "6.information stored of flight,schedule,pilot in binary files";
+    cout << " Press 0 to exit" << endl;
+    cout << "Enter choice: " << endl;
+      cin >> ch;
+       try {
+          if (ch == 1) {
+              Flight::bookTicket(flights, reservations);
+           }
+          else if (ch == 2) {
+                Flight::searchFlights(flights);
+           }
+            else if (ch == 3) {
+               Reservation::Modify_Cancel_Reservation(flights, reservations);
+           }
+           else if (ch == 4) {
+               Flight::update_schedule(flights);
+           }
+           else if (ch == 5) {
+           Reservation::search_Passenger_name(reservations);
+          }
+           else if (ch == 6) {
+              Flight f2;
+              Pilot p2;
+              Reservation r2;
+              fstream rdr;
+              rdr.open("data.bin", ios::binary | ios::in);
+              if (!rdr) {
+
+                  cout << "No binary file found!" << endl;
+              }
+              else {
+                  f2.load(rdr);
+                  p2.load(rdr);
+                  r2.load(rdr);
+                  rdr.close();
+              }
+         }
+           else if (ch == 0) {
+               cout << "System closed";            }
+            else {
+             cout << "invalid choice";
+              cout << endl;
+           }
+       }
+         catch (Mystring s) {
+              cout << "exception found" << endl<< s;
+           }
+          
+    } while (ch != 0);
+    logger.log("system closed");
+    return 0;
