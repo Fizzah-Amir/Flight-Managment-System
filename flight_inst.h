@@ -16,4 +16,6 @@ public:
    int getReservedSeats();
    void print();
    FlightInstance(const FlightInstance& other);
+    void save(fstream& f);
+ void load(fstream& f);
 };
