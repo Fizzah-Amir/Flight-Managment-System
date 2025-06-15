@@ -62,7 +62,7 @@ Mystring Flight::get_to_city() const{
         f1->get_instances()[i].print();
     }
 
-    std::cout << "enter Instance ID to book: ";
+    cout << "enter Instance ID to book: ";
     int iid;
     cin >> iid;
     FlightInstance* f2 = nullptr;
@@ -96,9 +96,6 @@ Mystring Flight::get_to_city() const{
     Logger::getInstance().log("reservation done.");
     cout << "Booking successful with r_id " << newResId << endl;
 }
-
-
-
   void Flight::searchFlights(const MyVector<Flight>& flights) {
     cout << "Enter departure city: ";
     Mystring dep; std::cin >> dep;
