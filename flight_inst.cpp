@@ -20,17 +20,37 @@ FlightInstance::FlightInstance(const FlightInstance& other) {
     void FlightInstance::cancelled() {
         cancel = true;
              }
-    void FlightInstance::reserveSeat() {
-        reserve_seat++;   
-    }
-    void FlightInstance::unreserveSeat() {
-        if (reserve_seat > 0) {
-            reserve_seat--;
-        }
-    }
-    int FlightInstance::getReservedSeats()  {
-        return reserve_seat;
-    }
+   void FlightInstance::reserveSeat(int s_n) {
+      if (seats[s_n] == 0) {
+          seats[s_n] =1;
+          reserved_seat++;
+     }
+  }
+  void FlightInstance::unreserveSeat(int s_n) {
+      if (reserved_seat > 0) {
+          if (seats[s_n] == 1) {
+              seats[s_n] = 0;
+              reserved_seat--;
+          }
+      }
+  }
+  FlightInstance::FlightInstance(int iid, const Mystring& d): instanceId(iid), date(d), cancel(false), reserved_seat(0) {};
+  void FlightInstance::print_seat() {
+      for (int i = 0; i < seats.size(); i++) {
+          if (seats[i] == 0) {
+              cout << "free";
+          }
+          else {
+              cout << "booked";
+          }
+      }
+  }
+  bool FlightInstance::ava_seat(int idx) {
+      if (seats[idx] == 0) {
+          return true;
+      }
+      return false;
+  }
     void FlightInstance::print() {
         cout << "instance ID" << instanceId << "date" << date;
         if (cancel){
