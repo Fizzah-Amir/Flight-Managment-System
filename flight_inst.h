@@ -11,9 +11,11 @@ public:
    Mystring getDate();
    bool isCancel();
    void cancelled();
-   void reserveSeat();
-   void unreserveSeat();
+   void reserveSeat(int s_n);
+   void unreserveSeat(int s_n);
    int getReservedSeats();
+   void print_seat();
+   bool ava_seat(int i);
    void print();
    FlightInstance(const FlightInstance& other);
     void save(fstream& f);
