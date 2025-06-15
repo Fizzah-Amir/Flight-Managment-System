@@ -1,4 +1,4 @@
-pragma once
+#pragma once
 #include <iostream>
 using namespace std;
 #include"Flight.h"
@@ -13,32 +13,34 @@ int Flight::getFlightId() {
 MyVector<FlightInstance>&Flight:: get_instances() {
 	return instances;
 }
-void Flight::addSchedule(const Schedule& s) {
+void Flight::add_schedule(const Schedule& s) {
 	schedules.push(s);
 }
-void Flight::addInstance(const FlightInstance& fi) {
+void Flight::add_instance(const FlightInstance& fi) {
 	instances.push(fi);
 }
-void Flight::print() {
-	cout << "flight no" << from << "->" << to << "in duration" << time;
-for (int i = 0; i < schedules.size(); i++) {
-	cout << "day" << schedules[i].getDay();
-	cout << "time" << schedules[i].getDepartureTime();
+void Flight::print()const {
+	cout << "flight no" <<flightNumber<< from << "->" << to << "in duration" << time;
+	for (int i = 0; i < schedules.size(); i++) {
+        cout << "day" << schedules[i].getDay() << endl;
+        cout << "time" << schedules[i].getDepartureTime() << endl;
 	}
 	for (int i = 0; i < instances.size(); i++) {
 		 instances[i].print();
+         cout << endl;
 	}
 }
  void Flight::show_schedule(const MyVector<Flight>& flights, MyVector<Reservation>& reservations) {
-    std::cout << "=Flight Schedule =";
+   cout << "=Flight Schedule =";
     for (int i = 0; i < flights.size();i++) {
         flights[i].print();
     }
+    cout << endl;
 }
-Mystring Flight::get_from_city() {
+Mystring Flight::get_from_city()const {
     return from;
 }
-Mystring Flight::get_to_city(){
+Mystring Flight::get_to_city() const{
     return to;
 }
 //remove reservations
@@ -74,7 +76,7 @@ Mystring Flight::get_to_city(){
     }
     //assumption:more that 5 seats cannot be reserved 
     if (f2->getReservedSeats() >= 5) {
-        cout << "Max reservations reached,no more can be reserved";
+        throw Mystring("reservatin limit ");
         return;
     }
     cout << "Enter passenger name: ";
@@ -98,17 +100,20 @@ Mystring Flight::get_to_city(){
 
 
   void Flight::searchFlights(const MyVector<Flight>& flights) {
-    std::cout << "Enter departure city: ";
+    cout << "Enter departure city: ";
     Mystring dep; std::cin >> dep;
-    std::cout << "Enter arrival city: ";
+   cout << "Enter arrival city: ";
     Mystring arr; std::cin >> arr;
-    std::cout << "Matching Flights:\n";
-    for (int i = 0; i < flights.size(); ++i) {
+    for (int i = 0; i < flights.size();i++) {
         if (flights[i].get_from_city() == dep && flights[i].get_to_city() == arr) {
             flights[i].print();
         }
+        else {
+            throw Mystring("flight not found");
+        }
     }
 }
+
  void Flight::update_schedule(MyVector<Flight>& flights) {
     cout << " press 1 add flight" ;
    cout << " press 2  remove flight";
@@ -118,9 +123,9 @@ Mystring Flight::get_to_city(){
     if (choice== 1) {
         int id;
         int  dur;
-        Mystring num;
-        Mystring dep;
-        Mystring arr;
+       Mystring num;
+       Mystring dep;
+       Mystring arr;
         cout << "enter new flight id ";
         cin >> id;
         cout << "flight number ";
@@ -135,7 +140,7 @@ Mystring Flight::get_to_city(){
         flights.push(f1);
         cout << "Flight added";
     }
-   else if (choice== 2) {
+    else if (choice== 2) {
         cout << "Enter flight no to remove: ";
         Mystring num;
       cin >> num;
@@ -143,10 +148,54 @@ Mystring Flight::get_to_city(){
             if (flights[i].getFlightNumber() == num) {
                 flights.delete_at(i);
                cout << "fight deleted";
-                return;
             }
         }
         cout << "flight not found";
     }
 }
+ void Flight::save(fstream& f) {
+     int l2= from.length();
+         f.write((char*)&l2, sizeof(l2));
+         f.write((const char*)from, l2);
 
+         int l3= to.length();
+         f.write((char*)&l3, sizeof(l3));
+         f.write((const char*)to, l3);
+     int l = schedules.size();
+     f.write((char*)&l, sizeof(l));
+     for (int i = 0; i < l; i++) {
+         schedules[i].save(f);
+     }
+   int l1 = instances.size();
+   f.write((char*)&l1, sizeof(l1));
+   for (int i = 0; i < l1; i++) {
+         instances[i].save(f);
+     }
+     f.write((char*)&flightId, sizeof(flightId));
+    
+ }
+ void Flight::load(fstream& f) {
+     int l, l1, l2,l3;
+     f.read((char*)&l3, sizeof(l3));
+     char* temp2 = new char[l3 + 1];
+     f.read(temp2, l3);
+     temp2[l3] = '\0';
+     delete[] temp2;
+
+     f.read((char*)&l2, sizeof(l2));
+     char* temp1 = new char[l2 + 1];
+     f.read(temp1, l2);
+     temp1[l2] = '\0';
+     delete[] temp1;
+
+     f.read((char*)&l, sizeof(l));
+     for (int i = 0; i < l; i++) {
+         schedules[i].load(f);
+     }
+     f.write((char*)&l1, sizeof(l1));
+     for (int i = 0; i < l1; i++) {
+         instances[i].save(f);
+     }
+     f.read((char*)&flightId, sizeof(flightId));
+     
+ }
