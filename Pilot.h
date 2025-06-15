@@ -9,4 +9,6 @@ public:
     Pilot( Mystring n, Address a, Mystring e,Mystring p);
     void assignFlight(int flightID);
     void printAssignedFlights();
+   void save(fstream& f);
+   void load(fstream& f);
 };
